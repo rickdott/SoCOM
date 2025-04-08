@@ -1,0 +1,36 @@
+services:
+  hmpai:
+    container_name: hmp-ai
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+      - NET_BIND_SERVICE
+    privileged: true
+    stdin_open: true
+    tty: true
+    build:
+      context: ../../
+      dockerfile: ./SoCOM/docker/Dockerfile
+    shm_size: '8gb'
+    volumes:
+      - ../../hmp-ai:/workspace/hmp-ai # First copy and install (see Dockerfile), then mount so changes are reflected
+      - ../../hmp:/workspace/hmp # First copy and install (see Dockerfile), then mount so changes are reflected
+      - ../../SoCOM:/workspace/SoCOM
+      # Change this path to where the data was copied to on the VM
+      # Remove this if mount_drive.sh is used and data is loaded from the network share
+      # This was added because loading files from smb network share happens at about 30 MB/s
+      # Number may change when drive is re-mounter (Local data2)
+      - '/media/labgenius/Local data2/data/data:/workspace/data_local'
+      # Add network disk volume for data here
+    
+    environment:
+      DATA_PATH: ${DATA_PATH}
+      SOLIS_ID: ${SOLIS_ID}
+      PASSWORD: ${PASSWORD}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
