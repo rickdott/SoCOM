@@ -20,7 +20,7 @@ I used a Docker image on a remote server to run the code, Docker scripts and mis
 
 Install the linked versions of HMP and HMP-AI by executing `pip install -e .` from their respective directories.
 
-The `/weindel` and `/boehm` contain the analysis notebooks for their respective datasets. Everything can be executed in order, but heed instructions in the individual notebooks. Raw files should be available at a location that corresponds to an environment variable: `$DATA_PATH`, `$DATA_PATH/sat2` for Weindel, and `$DATA_PATH/sat1` for Boehm.
+The `/weindel` and `/boehm` folders contain the analysis notebooks for their respective datasets. Everything can be executed in order, but heed instructions in the individual notebooks. Raw files should be available at a location that corresponds to an environment variable: `$DATA_PATH`, `$DATA_PATH/sat2` for Weindel, and `$DATA_PATH/sat1` for Boehm.
 
 ## Contact the author
 r.denotter@uu.nl\
