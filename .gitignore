@@ -10,6 +10,7 @@ models/*
 # Index map can be GB's large
 index_map.pkl
 *.env
+mount_drive.sh
 *.nc
 *.fif
 *.npz
